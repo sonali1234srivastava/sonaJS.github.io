@@ -1,0 +1,358 @@
+<HTML>
+<head>
+     <link rel="shortcut icon" type="image/png" href="favicon.png">
+     <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+     <style>  
+     .containers{
+       height : 99vh;
+       margin:1;
+  padding:0;
+    background-image: url("well_bg.jpg");
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+   background-size: cover;
+}
+      
+
+
+         
+         #res1{
+         	margin-left:20px;
+         }
+         #res2{
+         	margin-left:20px;
+         }
+         #res3{
+         	margin-left:20px;
+         }
+
+         .heading{
+            margin-left:10px;
+         }
+         .p1{
+            margin-left: 50px;
+        }
+         .p1 input{ 
+            margin-left: 30px;
+            display: inline;
+         }
+         .p2{
+            margin-left: 40px;
+        }
+        table{
+            border-collapse: collapse;
+            width: 80%;
+         }
+               
+         
+         tr{
+            transition:all .25s ease-in-out;
+         }
+         tr:hover{
+            background-color:gray; cursor: pointer;
+         }
+         th{
+            
+            background-color: black;
+            color: white;
+         }
+         td{
+            border: 2px solid black;
+            text-align: center;
+         }
+         td:nth-child(9){                                                   
+            background-color: orange; color: white; font-weight: bold; text-decoration: none;                
+          }
+         td:nth-child(10){                                                   
+            background-color: darkred; color: white; font-weight: bold; text-decoration: none;                 
+          }
+          .containers{ border: 2px solid black ;}
+           
+     </style>
+</head>
+<body>
+	<div class="containers">
+    <form name=details>
+    
+    
+
+
+		
+  <center><h2 class="heading">Students' Details</h2></center>
+
+  
+
+</br></br>
+        <div class="p1">
+        <p><b>NAME: <input type="text" name="Name" style="text-align: center;" id="name" ></b></p>
+        <p><b>BRANCH: <input type="text" name="Branch" style="text-align: center;" id="branch" ></b></p>
+        <p><b>ROLL NO: <input type="number" name="Roll" style="text-align: center;" id="roll" ></b></p>
+		<p><b>MARKS: <input type="number" name="SUB1" style="text-align: center;" id="sub1" placeholder="English">
+                     <input type="number" name="SUB2" style="text-align: center;" id="sub2" placeholder="Maths">
+                     <input type="number" name="SUB3" style="text-align: center;" id="sub3" placeholder="Physics">
+                     <input type="number" name="SUB4" style="text-align: center;" id="sub4" placeholder="Chemistry">
+                     <input type="number" name="SUB5" style="text-align: center;" id="sub5" placeholder="Biology"></b></p><br></br>
+        
+          <input type="button" class="btn btn-primary" name="compute" value="COMPUTE" onclick="comp();">
+          <input type="button" class="btn btn-success" name="add" value="ADD" onclick="addHtmlRowTable();">  
+          <input type="button" class="btn btn-danger" name="del" value="DELETE" onclick="removeSelectedRow();">
+          <input type="button" class="btn btn-warning" name="edit" value="EDIT" onclick="editHTMLTableSelectedRow();">
+          
+	    </div><br><br>
+
+         <span id="res1"></span><br>
+         <span id="res2"></span><br>
+         <span id="res3"></span>
+
+        <br><br><br>
+
+        <div class="p2">
+        <table id="table">
+        <tr>
+           <th rowspan="2">NAME</th>
+           <th rowspan="2">BRANCH</th>
+           <th rowspan="2">ROLL NO.</th>
+           <th colspan="5">MARKS</th>
+           <th rowspan="2"; colspan="2">SELECT</th>
+        </tr>  
+        <tr>
+            <th>SUB1</th>
+            <th>SUB2</th>
+            <th>SUB3</th>
+            <th>SUB4</th>
+            <th>SUB5</th>
+        </tr>
+        
+
+        </table>
+        </div>
+        <br><br><br>
+    </form>
+    </div>
+
+<script type="text/javascript">
+        var rIndex , table = document.getElementById("table");
+        var select1 ="EDIT",
+            select2 ="DELETE",
+            edit = 0 ,
+            sum ;                      
+        function ckEmptyInput()       //a function to display a mssg if input entries are added or edited in the table bt its not working rt now
+        {
+         
+         var  name= document.getElementById("name").value,
+             branch= document.getElementById("branch").value,
+             roll_no = document.getElementById("roll").value,
+             sub1 = document.getElementById("sub1").value,
+             sub2 = document.getElementById("sub2").value,
+             sub3 = document.getElementById("sub3").value,
+             sub4 = document.getElementById("sub4").value,
+             sub5 = document.getElementById("sub5").value;
+
+          if(name == "")
+          {
+            alert("Input Entry cannot be left Empty");
+          }
+          else if(branch  == "")
+          {
+            alert("Input Entry cannot be left Empty");
+            
+          } 
+          else if(roll_no == "")
+          {
+            alert("Input Entry cannot be left Empty");
+            
+          }
+          else  if(sub1 == "")
+          {
+            alert("Input Entry cannot be left Empty");
+            
+          }
+          else if(sub2 == "")
+          {
+            alert("Input Entry cannot be left Empty");
+            
+          }
+          else  if(sub3 == "")
+          {
+            alert("Input Entry cannot be left Empty");
+             
+          }
+          else  if(sub4 == "")
+          {
+            alert("Input Entry cannot be left Empty");
+              
+          }
+          else  if(sub5 == "")
+          {
+            alert("Input Entry cannot be left Empty");
+              
+          }
+           else{
+            return true;
+           }
+          
+        }
+        
+        function addHtmlRowTable()         //to add new rows in the table
+        {  
+            if(ckEmptyInput())
+          {      
+             var table= document.getElementById("table"),
+             newRow = table.insertRow(table.length),
+
+             cell1= newRow.insertCell(0),
+             cell2= newRow.insertCell(1),
+             cell3= newRow.insertCell(2),
+             cell4= newRow.insertCell(3),
+             cell5= newRow.insertCell(4),
+             cell6= newRow.insertCell(5),
+             cell7= newRow.insertCell(6),
+             cell8= newRow.insertCell(7),
+             cell9= newRow.insertCell(8),
+             cell10 = newRow.insertCell(9),
+
+             name= document.getElementById("name").value,
+             branch= document.getElementById("branch").value,
+             roll_no = document.getElementById("roll").value,
+             sub1 = document.getElementById("sub1").value,
+             sub2 = document.getElementById("sub2").value,
+             sub3 = document.getElementById("sub3").value,
+             sub4 = document.getElementById("sub4").value,
+             sub5 = document.getElementById("sub5").value;
+
+             cell1.innerHTML = name;
+             cell2.innerHTML = branch;
+             cell3.innerHTML = roll_no;
+             cell4.innerHTML = sub1;
+             cell5.innerHTML = sub2;
+             cell6.innerHTML = sub3;
+             cell7.innerHTML = sub4;
+             cell8.innerHTML = sub5;
+             cell9.innerHTML = select1;
+            cell10.innerHTML = select2;
+
+            selectedRowToInput();
+          }
+        }
+
+        function selectedRowToInput()      //to show selected row entries in the input boxes 
+        {
+           
+           for(var i=2;i<table.rows.length;i++)   
+           {
+            table.rows[i].onclick = function()
+            { rIndex = this.rowIndex;               
+               
+
+             document.getElementById("name").value = this.cells[0].innerHTML;
+             document.getElementById("branch").value = this.cells[1].innerHTML;
+             document.getElementById("roll").value = this.cells[2].innerHTML;
+             document.getElementById("sub1").value = this.cells[3].innerHTML;
+             document.getElementById("sub2").value = this.cells[4].innerHTML;
+             document.getElementById("sub3").value = this.cells[5].innerHTML;
+             document.getElementById("sub4").value = this.cells[6].innerHTML;
+             document.getElementById("sub5").value = this.cells[7].innerHTML;
+           };
+
+          table.rows[i].cells[9].onclick = function()
+            { rdIndex = this.parentElement.rowIndex;     //row selected on clicking the delete button in the row  
+
+             document.getElementById("name").value = this.cells[0].innerHTML;
+             document.getElementById("branch").value = this.cells[1].innerHTML;
+             document.getElementById("roll").value = this.cells[2].innerHTML;
+             document.getElementById("sub1").value = this.cells[3].innerHTML;
+             document.getElementById("sub2").value = this.cells[4].innerHTML;
+             document.getElementById("sub3").value = this.cells[5].innerHTML;
+             document.getElementById("sub4").value = this.cells[6].innerHTML;
+             document.getElementById("sub5").value = this.cells[7].innerHTML;
+           };
+
+          }
+         }
+           selectedRowToInput();
+
+           function editHTMLTableSelectedRow()     //functionality for edit button
+         {  
+           
+            var name= document.getElementById("name").value,
+             branch= document.getElementById("branch").value,
+             roll_no = document.getElementById("roll").value,
+             sub1 = document.getElementById("sub1").value,
+             sub2 = document.getElementById("sub2").value,
+             sub3 = document.getElementById("sub3").value,
+             sub4 = document.getElementById("sub4").value,
+             sub5 = document.getElementById("sub5").value;
+
+             if(ckEmptyInput()) 
+          { 
+             table.rows[rIndex].cells[0].innerHTML = name;
+             table.rows[rIndex].cells[1].innerHTML = branch;
+             table.rows[rIndex].cells[2].innerHTML = roll_no;
+             table.rows[rIndex].cells[3].innerHTML = sub1;
+             table.rows[rIndex].cells[4].innerHTML = sub2;
+             table.rows[rIndex].cells[5].innerHTML = sub3;
+             table.rows[rIndex].cells[6].innerHTML = sub4;
+             table.rows[rIndex].cells[7].innerHTML = sub5;
+
+           }
+         } 
+          
+           function removeSelectedRow()     //functionaity to remove the selected row from the table with a confirmation button
+           {
+              var c = confirm("Are you Sure?");
+               
+               if(c === true)
+             {   
+                table.deleteRow(rdIndex);
+                    
+             document.getElementById("name").value = " ";
+             document.getElementById("branch").value = " ";
+             document.getElementById("roll").value = " ";
+             document.getElementById("sub1").value = " ";
+             document.getElementById("sub2").value = " ";
+             document.getElementById("sub3").value = " ";
+             document.getElementById("sub4").value = " ";
+             document.getElementById("sub5").value = " ";
+            }
+
+           }
+
+          
+
+       function comp()
+       {
+        var rIndex, table= document.getElementById("table"),
+        sub1 = document.getElementById("sub1").value,
+             sub2 = document.getElementById("sub2").value,
+             sub3 = document.getElementById("sub3").value,
+             sub4 = document.getElementById("sub4").value,
+             sub5 = document.getElementById("sub5").value;
+         var sum = parseInt(sub1) + parseInt(sub2) + parseInt(sub3) + parseInt(sub4) + parseInt(sub5);
+         var per = sum / 5;
+
+         var grade ;
+
+           
+           if(per<50){ grade = "F"; }
+           else if(per<=60){  grade = "E";  }
+           else if(per<=70){  grade = "D";  }
+           else if(per<=80){  grade = "C";  }
+           else if(per<=90){  grade = "B";  }
+           else {  grade = "A";  }
+
+      
+         document.getElementById("res1").innerHTML = "TOTAL : " + sum ;
+         document.getElementById("res2").innerHTML = "PERCENTAGE : " + per ;
+         document.getElementById("res3").innerHTML = "GRADE : " + grade ;
+		 
+       }
+
+     </script>
+
+</body>
+</HTML>
